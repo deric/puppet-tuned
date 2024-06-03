@@ -1,0 +1,12 @@
+<% | Hash[String[1], Hash[String[1],
+     Variant[String[1],Numeric]]] $data | -%>
+#
+# Managed by Puppet
+#
+<% sort(keys($data)).each |$section| { -%>
+
+[<%= $section %>]
+<% sort(keys($data[$section])).each |$key| { -%>
+<%= $key %>=<% if (' ' in $data[$section][$key]) { -%>"<%= $data[$section][$key] %>"<% } else { -%><%= $data[$section][$key] %><% } %>
+<% } -%>
+<% } -%>
