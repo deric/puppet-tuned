@@ -44,17 +44,17 @@ class tuned (
   if $enable {
     include tuned::config
 
-    if ! empty($tuned::profile) {
+    if !empty($tuned::profile) {
       Ini_setting {
         before => Exec['tuned-adm_profile'],
       }
-    }
 
-    exec { 'tuned-adm_profile':
-      command => shellquote('tuned-adm', 'profile', $tuned::profile),
-      unless  => shellquote('tuned-adm', 'active | grep', $tuned::profile),
-      path    => '/bin:/usr/bin:/sbin:/usr/sbin',
-      require => Class['Tuned::Config'],
+      exec { 'tuned-adm_profile':
+        command => shellquote('tuned-adm', 'profile', $tuned::profile),
+        unless  => shellquote('tuned-adm', 'active | grep', $tuned::profile),
+        path    => '/bin:/usr/bin:/sbin:/usr/sbin',
+        require => Class['Tuned::Config'],
+      }
     }
 
     Class['tuned::install']
