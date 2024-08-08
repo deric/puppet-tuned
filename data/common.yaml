@@ -12,3 +12,4 @@ tuned::service_name: tuned
 tuned::packages: ['tuned']
 tuned::main_config: /etc/tuned/tuned-main.conf
 tuned::profiles_path: /etc/tuned
+tuned::active_profile: active_profile

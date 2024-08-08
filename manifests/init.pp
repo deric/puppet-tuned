@@ -10,6 +10,8 @@
 #   Either specific version or `installed` | `present` | `latest`
 # @param service_ensure
 # @param service_name Name of the service
+# @param active_profile
+#   Name of the file containing curretly active profile (located in main config directory)
 # @param packages
 #   Packages to be installed by this module.
 # @param main_config
@@ -33,6 +35,7 @@ class tuned (
   String               $service_ensure,
   String               $service_name,
   Array[String[1]]     $packages,
+  String[1]            $active_profile,
   Stdlib::AbsolutePath $main_config,
   Stdlib::AbsolutePath $profiles_path,
   Tuned::Main          $main = {},
@@ -49,9 +52,11 @@ class tuned (
         before => Exec['tuned-adm_profile'],
       }
 
+      $active_profile_path = "${profiles_path}/${active_profile}"
+
       exec { 'tuned-adm_profile':
         command => shellquote('tuned-adm', 'profile', $tuned::profile),
-        unless  => shellquote('tuned-adm', 'active | grep', $tuned::profile),
+        unless  => shellquote('grep', '-Fqx', $tuned::profile, $active_profile_path),
         path    => '/bin:/usr/bin:/sbin:/usr/sbin',
         require => Class['Tuned::Config'],
       }
