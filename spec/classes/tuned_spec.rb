@@ -40,4 +40,30 @@ describe 'tuned' do
               })
     }
   end
+
+  context 'with profiles' do
+    let(:params) do
+      {
+        profiles: {
+          hpc: {
+            main: {
+              include: 'latency-performance'
+            },
+            sysctl: {
+              'net.ipv4.tcp_fastopen': 3,
+            },
+          },
+          basic: {
+            main: {
+              include: 'balanced'
+            },
+          },
+        }
+      }
+    end
+
+    it { is_expected.to contain_class('tuned::install') }
+    it { is_expected.to contain_tuned__profile('hpc') }
+    it { is_expected.to contain_tuned__profile('basic') }
+  end
 end

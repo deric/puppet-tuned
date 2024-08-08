@@ -2,7 +2,7 @@
 #
 # @api private
 class tuned::config (
-  Tuned::Config $main = $tuned::main,
+  Tuned::Main $main = $tuned::main,
 ) {
   if ! empty($tuned::main_config) {
     if $tuned::manage_service {
@@ -15,7 +15,6 @@ class tuned::config (
     $main.each |String $option, $value| {
       ini_setting {
         "tuned-${option}":
-          path    => $tuned::main_config,
           setting => $option,
           value   => $value,
       }

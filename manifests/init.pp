@@ -34,9 +34,9 @@ class tuned (
   String               $service_name,
   Array[String[1]]     $packages,
   Stdlib::AbsolutePath $main_config,
-  Tuned::Config        $main = {},
-  Optional[String]     $profile = undef,
   Stdlib::AbsolutePath $profiles_path,
+  Tuned::Main          $main = {},
+  Optional[String]     $profile = undef,
   Hash                 $profiles = {},
 ) {
   include tuned::install
@@ -52,7 +52,7 @@ class tuned (
 
     exec { 'tuned-adm_profile':
       command => shellquote('tuned-adm', 'profile', $tuned::profile),
-      unless  => shellquote('tuned-adm', 'active | grep -q', $tuned::profile),
+      unless  => shellquote('tuned-adm', 'active | grep', $tuned::profile),
       path    => '/bin:/usr/bin:/sbin:/usr/sbin',
       require => Class['Tuned::Config'],
     }
@@ -61,7 +61,7 @@ class tuned (
     -> Class['tuned::config']
 
     $profiles.each |$name, $conf| {
-      create_resources(tuned::profile, { $name => $conf })
+      create_resources(tuned::profile, { $name => { 'config' => $conf } })
     }
   }
 

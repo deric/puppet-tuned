@@ -9,8 +9,5 @@ describe 'tuned::profile' do
     {}
   end
 
-  _, os_facts = on_supported_os.first
-  let(:facts) { os_facts }
-
   it { is_expected.to compile }
 end
