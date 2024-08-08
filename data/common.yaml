@@ -1,4 +1,8 @@
 ---
+lookup_options:
+  tuned::profiles:
+    merge:
+      strategy: deep
 tuned::enable: true
 tuned::manage_package: true
 tuned::manage_service: true
