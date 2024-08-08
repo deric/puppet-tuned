@@ -6,3 +6,4 @@ tuned::package_ensure: installed
 tuned::service_ensure: running
 tuned::service_name: tuned
 tuned::packages: ['tuned']
+tuned::main_config: /etc/tuned/tuned-main.conf
