@@ -52,7 +52,7 @@ class tuned (
 
     exec { 'tuned-adm_profile':
       command => shellquote('tuned-adm', 'profile', $tuned::profile),
-      unless  => shellquote('tuned-adm active | grep -q', $tuned::profile),
+      unless  => shellquote('tuned-adm', 'active | grep -q', $tuned::profile),
       path    => '/bin:/usr/bin:/sbin:/usr/sbin',
       require => Class['Tuned::Config'],
     }
