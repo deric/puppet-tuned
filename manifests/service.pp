@@ -3,7 +3,8 @@
 # @api private
 class tuned::service {
   service { $tuned::service_name:
-    ensure => $tuned::service_ensure,
-    enable => true,
+    ensure  => $tuned::service_ensure,
+    enable  => true,
+    require => Class['Tuned::Install'],
   }
 }
