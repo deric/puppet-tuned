@@ -2,10 +2,8 @@
 
 All notable changes to this project will be documented in this file.
 
-## Release 0.1.0
+## [2024-08-09] Release 0.1.0
 
-**Features**
-
-**Bugfixes**
-
-**Known Issues**
+  - Initial release
+  - Basic tuned management
+  - Hierarchical configuration of tuned profiles

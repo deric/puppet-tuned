@@ -1,6 +1,6 @@
 # puppet-tuned
 
-[![Tests](https://github.com/deric/puppet-tuned/actions/workflows/test.yml/badge.svg)](https://github.com/deric/puppet-tuned/actions/workflows/test.yml)
+[![Puppet Forge](http://img.shields.io/puppetforge/v/deric/tuned.svg)](https://forge.puppet.com/modules/deric/tuned) [![Tests](https://github.com/deric/puppet-tuned/actions/workflows/test.yml/badge.svg)](https://github.com/deric/puppet-tuned/actions/workflows/test.yml)
 
 A module to manage tuneD service and its configuration.
 
