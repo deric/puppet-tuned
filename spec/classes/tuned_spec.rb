@@ -65,5 +65,12 @@ describe 'tuned' do
     it { is_expected.to contain_class('tuned::install') }
     it { is_expected.to contain_tuned__profile('hpc') }
     it { is_expected.to contain_tuned__profile('basic') }
+
+    it { is_expected.to contain_file('/etc/tuned/hpc').with_ensure('directory') }
+    it { is_expected.to contain_file('/etc/tuned/basic').with_ensure('directory') }
+
+    it { is_expected.to contain_file('/etc/tuned/hpc/tuned.conf').with_content(%r{^\[main\]\ninclude = latency-performance$}) }
+    it { is_expected.to contain_file('/etc/tuned/hpc/tuned.conf').with_content(%r{^\[sysctl\]\nnet.ipv4.tcp_fastopen = 3$}) }
+    it { is_expected.to contain_file('/etc/tuned/basic/tuned.conf').with_content(%r{^\[main\]\ninclude = balanced$}) }
   end
 end

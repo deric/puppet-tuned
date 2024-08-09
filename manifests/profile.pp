@@ -26,20 +26,10 @@ define tuned::profile (
 
       $config_path = "${profile_dir}/tuned.conf"
 
-      Ini_setting {
-        path    => $config_path,
+      file { $config_path:
+        ensure  => file,
+        content => epp("${module_name}/profile.epp", { 'config' => $config }),
         notify  => Service[$tuned::service_name],
-      }
-
-      $config.each |String $section, $hash| {
-        $hash.each |String $setting, $value| {
-          ini_setting {
-            "tuned-${title}-${section}-${setting}":
-              section => $section,
-              setting => $setting,
-              value   => $value,
-          }
-        }
       }
     }
 

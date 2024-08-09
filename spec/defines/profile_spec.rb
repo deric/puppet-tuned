@@ -10,4 +10,9 @@ describe 'tuned::profile' do
   end
 
   it { is_expected.to compile }
+  it { is_expected.to contain_tuned__profile('performance') }
+
+  it { is_expected.to contain_file('/etc/tuned/performance').with_ensure('directory') }
+
+  it { is_expected.to contain_file('/etc/tuned/performance/tuned.conf') }
 end
