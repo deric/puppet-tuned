@@ -1,0 +1,3 @@
+---
+tuned::dependencies:
+ - linux-cpupower

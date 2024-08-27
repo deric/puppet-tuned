@@ -3,9 +3,11 @@
 # @param enable
 #   Whether OS tuning is enabled
 # @param manage_package
-#   Whether package should be managed.
+#   Whether tuned package should be managed.
 # @param manage_service
 #   Whether service should be managed.
+# @param manage_dependencies
+#   Whether extra dependencies (might be used by plugins) should be installed.
 # @param package_ensure
 #   Either specific version or `installed` | `present` | `latest`
 # @param service_ensure
@@ -14,6 +16,8 @@
 #   Name of the file containing curretly active profile (located in main config directory)
 # @param packages
 #   Packages to be installed by this module.
+# @param dependencies
+#   Extra packages required by plugins.
 # @param main_config
 #   Path to the tuned-main.conf file
 # @param main
@@ -31,6 +35,7 @@ class tuned (
   Boolean              $enable,
   Boolean              $manage_package,
   Boolean              $manage_service,
+  Boolean              $manage_dependencies,
   String               $package_ensure,
   String               $service_ensure,
   String               $service_name,
@@ -38,6 +43,7 @@ class tuned (
   String[1]            $active_profile,
   Stdlib::AbsolutePath $main_config,
   Stdlib::AbsolutePath $profiles_path,
+  Array[String[1]]     $dependencies = [],
   Tuned::Main          $main = {},
   Optional[String]     $profile = undef,
   Hash                 $profiles = {},

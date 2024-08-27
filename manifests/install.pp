@@ -6,5 +6,11 @@ class tuned::install {
     stdlib::ensure_packages($tuned::packages, {
         ensure => $tuned::package_ensure,
     })
+
+    if $tuned::manage_dependencies and !empty($tuned::dependencies) {
+      stdlib::ensure_packages($tuned::dependencies, {
+          ensure => $tuned::package_ensure,
+      })
+    }
   }
 }

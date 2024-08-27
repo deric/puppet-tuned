@@ -10,6 +10,12 @@ describe 'tuned::install' do
 
       it { is_expected.to compile.with_all_deps }
       it { is_expected.to contain_package('tuned').with_ensure(%r{present|installed}) }
+
+      if os_facts[:os]['family'] == 'Debian'
+        it { is_expected.to contain_package('linux-cpupower') }
+      else
+        it { is_expected.not_to contain_package('linux-cpupower') }
+      end
     end
   end
 end
