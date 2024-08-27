@@ -47,6 +47,9 @@ class tuned (
   if $enable {
     include tuned::config
 
+    Class['tuned::install']
+    -> Class['tuned::config']
+
     if !empty($tuned::profile) {
       Ini_setting {
         before => Exec['tuned-adm_profile'],
@@ -60,13 +63,6 @@ class tuned (
         path    => '/bin:/usr/bin:/sbin:/usr/sbin',
         require => Class['Tuned::Config'],
       }
-    }
-
-    Class['tuned::install']
-    -> Class['tuned::config']
-
-    $profiles.each |$name, $conf| {
-      create_resources(tuned::profile, { $name => { 'config' => $conf } })
     }
   }
 

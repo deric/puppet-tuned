@@ -20,4 +20,8 @@ class tuned::config (
       }
     }
   }
+
+  $tuned::profiles.each |$name, $conf| {
+    create_resources(tuned::profile, { $name => { 'config' => $conf } })
+  }
 }

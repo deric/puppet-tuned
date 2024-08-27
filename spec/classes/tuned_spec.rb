@@ -44,6 +44,7 @@ describe 'tuned' do
   context 'with profiles' do
     let(:params) do
       {
+        profile: 'hpc',
         profiles: {
           hpc: {
             main: {
@@ -62,9 +63,10 @@ describe 'tuned' do
       }
     end
 
-    it { is_expected.to contain_class('tuned::install') }
+    it { is_expected.to contain_class('tuned::install').that_comes_before('Class[tuned::config]') }
     it { is_expected.to contain_tuned__profile('hpc') }
     it { is_expected.to contain_tuned__profile('basic') }
+    it { is_expected.to contain_exec('tuned-adm_profile').that_requires('Class[tuned::config]') }
 
     it { is_expected.to contain_file('/etc/tuned/hpc').with_ensure('directory') }
     it { is_expected.to contain_file('/etc/tuned/basic').with_ensure('directory') }

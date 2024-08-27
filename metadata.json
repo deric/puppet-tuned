@@ -1,6 +1,6 @@
 {
   "name": "deric-tuned",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "author": "Tomas Barton",
   "summary": "Manage tuned configuration",
   "license": "Apache-2.0",
