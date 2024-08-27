@@ -76,13 +76,13 @@ describe 'tuned' do
     it { is_expected.to contain_file('/etc/tuned/basic/tuned.conf').with_content(%r{^\[main\]\ninclude = balanced$}) }
   end
 
-
   context 'without dependencies' do
     let(:params) do
       {
         manage_dependencies: false,
       }
     end
+
     it { is_expected.not_to contain_package('linux-cpupower') }
   end
 end

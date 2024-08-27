@@ -46,11 +46,13 @@ The following parameters are available in the `tuned` class:
 * [`enable`](#-tuned--enable)
 * [`manage_package`](#-tuned--manage_package)
 * [`manage_service`](#-tuned--manage_service)
+* [`manage_dependencies`](#-tuned--manage_dependencies)
 * [`package_ensure`](#-tuned--package_ensure)
 * [`service_ensure`](#-tuned--service_ensure)
 * [`service_name`](#-tuned--service_name)
 * [`active_profile`](#-tuned--active_profile)
 * [`packages`](#-tuned--packages)
+* [`dependencies`](#-tuned--dependencies)
 * [`main_config`](#-tuned--main_config)
 * [`main`](#-tuned--main)
 * [`profile`](#-tuned--profile)
@@ -67,13 +69,19 @@ Whether OS tuning is enabled
 
 Data type: `Boolean`
 
-Whether package should be managed.
+Whether tuned package should be managed.
 
 ##### <a name="-tuned--manage_service"></a>`manage_service`
 
 Data type: `Boolean`
 
 Whether service should be managed.
+
+##### <a name="-tuned--manage_dependencies"></a>`manage_dependencies`
+
+Data type: `Boolean`
+
+Whether extra dependencies (might be used by plugins) should be installed.
 
 ##### <a name="-tuned--package_ensure"></a>`package_ensure`
 
@@ -104,6 +112,14 @@ Name of the file containing curretly active profile (located in main config dire
 Data type: `Array[String[1]]`
 
 Packages to be installed by this module.
+
+##### <a name="-tuned--dependencies"></a>`dependencies`
+
+Data type: `Array[String[1]]`
+
+Extra packages required by plugins.
+
+Default value: `[]`
 
 ##### <a name="-tuned--main_config"></a>`main_config`
 
