@@ -2,6 +2,6 @@
 <% $config.each |String $section, $hash| { -%>
 [<%= $section %>]
 <% $hash.each |String $key, $value| { -%>
-<%= $key %> = <% if (' ' in $value) { -%>"<%= $value %>"<% } else { -%><%= $value %><% } %>
+<%= $key %>=<% if (' ' in $value) { -%>"<%= $value %>"<% } else { -%><%= $value %><% } %>
 <% } %>
 <% } -%>

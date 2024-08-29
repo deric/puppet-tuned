@@ -65,6 +65,18 @@ tuned::profiles:
 ```
 This would generate `/etc/tuned/custom/tuned.conf` file with corresponding configuration.
 
+
+Operators `=>` can be used by passing value starting with `>`
+
+```yaml
+tuned::profile: io
+tuned::profiles:
+  io:
+    disk-sd:
+      type: disk
+      readahead: '>4096'
+```
+
 Each section correspods to a plugin name. See `tuned-adm list plugins` for available plugins, e.g.:
 
 ```
