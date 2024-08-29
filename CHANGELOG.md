@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.4.0 [2024-08-29]
+
+**Features**
+
+  - Support passing `=>` operator
+
+[Full changes](https://github.com/deric/puppet-tuned/compare/v0.3.1...v0.4.0)
+
+
 ## 0.3.1 [2024-08-27]
 
 **Features**
