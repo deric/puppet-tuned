@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.5.0 [2025-11-25]
+
+**Features**
+
+  - Support Debian 13
+
+[Full changes](https://github.com/deric/puppet-tuned/compare/v0.4.0...v0.5.0)
+
+
 ## 0.4.0 [2024-08-29]
 
 **Features**
