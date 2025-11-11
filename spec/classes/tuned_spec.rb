@@ -2,9 +2,8 @@
 
 require 'spec_helper'
 
-
 def tuned_profiles_path(os_facts)
-  if os_facts[:os]['family'] == 'Debian' and  os_facts[:os]['release']['major'] == '13'
+  if os_facts[:os]['family'] == 'Debian' && os_facts[:os]['release']['major'] == '13'
     '/etc/tuned/profiles'
   else
     '/etc/tuned'
