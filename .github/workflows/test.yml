@@ -69,6 +69,7 @@ jobs:
         beaker:
           - debian11-64a
           - debian12-64a
+          - debian13-64a
           - centos9-64a
     name: Acceptance / Image ${{ matrix.beaker }}
     steps:
