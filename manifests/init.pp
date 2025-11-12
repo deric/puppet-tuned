@@ -60,8 +60,8 @@ class tuned (
       Ini_setting {
         before => Exec['tuned-adm_profile'],
       }
-
-      $active_profile_path = "${profiles_path}/${active_profile}"
+      $basedir = dirname($main_config)
+      $active_profile_path = "${basedir}/${active_profile}"
 
       exec { 'tuned-adm_profile':
         command => shellquote('tuned-adm', 'profile', $tuned::profile),

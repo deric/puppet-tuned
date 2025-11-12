@@ -75,7 +75,10 @@ describe 'tuned' do
         it { is_expected.to contain_class('tuned::install').that_comes_before('Class[tuned::config]') }
         it { is_expected.to contain_tuned__profile('hpc') }
         it { is_expected.to contain_tuned__profile('basic') }
-        it { is_expected.to contain_exec('tuned-adm_profile').that_requires('Class[tuned::config]') }
+        it { is_expected.to contain_exec('tuned-adm_profile').that_requires('Class[tuned::config]').with(
+            command: 'tuned-adm profile hpc',
+            unless: 'grep -Fqx hpc /etc/tuned/active_profile',
+          ) }
 
         profiles_path = tuned_profiles_path(os_facts)
 
